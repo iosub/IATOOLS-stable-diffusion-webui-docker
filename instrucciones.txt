@@ -1,2 +1,2 @@
-docker compose --profile download up --build
-docker compose --profile auto up --build
+docker compose --profile download up --build --no-cache 
+docker compose --profile auto up --build --no-cache 
