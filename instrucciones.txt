@@ -1,2 +1,4 @@
 docker compose --profile download up --build --no-cache 
 docker compose --profile auto up --build --no-cache 
+docker builder prune
+https://github.com/AbdBarho/stable-diffusion-webui-docker/issues/719
