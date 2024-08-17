@@ -1,4 +1,4 @@
-docker compose --profile download up --build --no-cache 
+docker compose --profile download up --build 
 docker compose --profile auto up --build --no-cache 
 docker builder prune
 https://github.com/AbdBarho/stable-diffusion-webui-docker/issues/719
@@ -6,3 +6,40 @@ https://github.com/AbdBarho/stable-diffusion-webui-docker/issues/719
 docker compose --profile comfy up --build 
 
 https://docs.openwebui.com/tutorial/images/
+
+Flux
+https://comfyanonymous.github.io/ComfyUI_examples/flux/
+https://huggingface.co/docs/hub/models-downloading
+git lfs install
+git clone git@hf.co:<MODEL ID> # example: git clone git@hf.co:bigscience/bloom
+
+ae.safetensors
+https://huggingface.co/black-forest-labs/FLUX.1-schnell/resolve/main/ae.safetensors
+
+
+COMFYUI_BASE_URL="http://host.docker.internal:8188"
+COMFYUI_CFG_SCALE="3.5"
+COMFYUI_SAMPLER="euler"
+COMFYUI_SCHEDULER="simple"
+COMFYUI_SD3="false"
+COMFYUI_FLUX="true" # Enables ComfyUI Flux mode.
+COMFYUI_FLUX_WEIGHT_DTYPE="fp8_e4m3fn" # Ignored if Flux is not enabled. Sets the weight precision for Flux.
+COMFYUI_FLUX_FP8_CLIP="true # Enable 8-bit precision for the Flux text encoder.
+
+
+
+docker run --hostname=87a36caf59e7 --user=0:0 --mac-address=02:42:ac:11:00:02 --env=PATH=/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin --env=LANG=C.UTF-8 --env=GPG_KEY=A035C8C19219BA821ECEA86B64E628F8D684696D --env=PYTHON_VERSION=3.11.9 --env=PYTHON_PIP_VERSION=24.0 --env=PYTHON_SETUPTOOLS_VERSION=65.5.1 --env=PYTHON_GET_PIP_URL=https://github.com/pypa/get-pip/raw/66d8a0f637083e2c3ddffc0cb1e65ce126afb856/public/get-pip.py --env=PYTHON_GET_PIP_SHA256=6fb7b781206356f45ad79efbb19322caa6c2a5ad39092d0d44d0fec94117e118 --env=ENV=prod --env=PORT=8080 --env=USE_OLLAMA_DOCKER=false --env=USE_CUDA_DOCKER=true --env=USE_CUDA_DOCKER_VER=cu121 --env=USE_EMBEDDING_MODEL_DOCKER=sentence-transformers/all-MiniLM-L6-v2 --env=USE_RERANKING_MODEL_DOCKER= --env=OLLAMA_BASE_URL=/ollama --env=OPENAI_API_BASE_URL= --env=OPENAI_API_KEY= --env=WEBUI_SECRET_KEY= --env=SCARF_NO_ANALYTICS=true --env=DO_NOT_TRACK=true --env=ANONYMIZED_TELEMETRY=false --env=WHISPER_MODEL=base --env=WHISPER_MODEL_DIR=/app/backend/data/cache/whisper/models --env=RAG_EMBEDDING_MODEL=sentence-transformers/all-MiniLM-L6-v2 --env=RAG_RERANKING_MODEL= --env=SENTENCE_TRANSFORMERS_HOME=/app/backend/data/cache/embedding/models --env=HF_HOME=/app/backend/data/cache/embedding/models --env=HOME=/root --env=WEBUI_BUILD_VERSION=13b0e7d64a708f69c5ce58cf0897d9951d0d16ad --volume=open-webui:/app/backend/data --network=bridge --workdir=/app/backend -p 3000:8080 --restart=always --label='org.opencontainers.image.created=2024-08-14T19:45:36.157Z' --label='org.opencontainers.image.description=User-friendly WebUI for LLMs (Formerly Ollama WebUI)' --label='org.opencontainers.image.licenses=MIT' --label='org.opencontainers.image.revision=13b0e7d64a708f69c5ce58cf0897d9951d0d16ad' --label='org.opencontainers.image.source=https://github.com/open-webui/open-webui' --label='org.opencontainers.image.title=open-webui' --label='org.opencontainers.image.url=https://github.com/open-webui/open-webui' --label='org.opencontainers.image.version=main-cuda' --add-host host.docker.internal:host-gateway --runtime=runc -d ghcr.io/open-webui/open-webui:cuda
+
+
+--env=COMFYUI_BASE_URL="http://host.docker.internal:7861" --env=OMFYUI_CFG_SCALE="3.5" --env=COMFYUI_SAMPLER="euler" --env=COMFYUI_SCHEDULER="simple" --env=OMFYUI_SD3="false" --env=COMFYUI_FLUX="true" --env=COMFYUI_FLUX_WEIGHT_DTYPE="fp8_e4m3fn" --env=OMFYUI_FLUX_FP8_CLIP="true"
+
+docker run -d -p 3001:8080 --gpus=all -v ollama:/root/.ollama -v open-webui:/app/backend/data --name open-webuiflux --env=COMFYUI_BASE_URL="http://host.docker.internal:7861" --env=OMFYUI_CFG_SCALE="3.5" --env=COMFYUI_SAMPLER="euler" --env=COMFYUI_SCHEDULER="simple" --env=OMFYUI_SD3="false" --env=COMFYUI_FLUX="true" --env=COMFYUI_FLUX_WEIGHT_DTYPE="fp8_e4m3fn" --env=OMFYUI_FLUX_FP8_CLIP="true" --restart always ghcr.io/open-webui/open-webui:ollama
+
+docker run --hostname=87a36caf59e7 --user=0:0 --mac-address=02:42:ac:11:00:02 
+--env=
+
+--env=PATH=/usr/local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin --env=LANG=C.UTF-8 --env=GPG_KEY=A035C8C19219BA821ECEA86B64E628F8D684696D --env=PYTHON_VERSION=3.11.9 --env=PYTHON_PIP_VERSION=24.0 --env=PYTHON_SETUPTOOLS_VERSION=65.5.1 --env=PYTHON_GET_PIP_URL=https://github.com/pypa/get-pip/raw/66d8a0f637083e2c3ddffc0cb1e65ce126afb856/public/get-pip.py --env=PYTHON_GET_PIP_SHA256=6fb7b781206356f45ad79efbb19322caa6c2a5ad39092d0d44d0fec94117e118 --env=ENV=prod --env=PORT=8080 --env=USE_OLLAMA_DOCKER=false --env=USE_CUDA_DOCKER=true --env=USE_CUDA_DOCKER_VER=cu121 --env=USE_EMBEDDING_MODEL_DOCKER=sentence-transformers/all-MiniLM-L6-v2 --env=USE_RERANKING_MODEL_DOCKER= --env=OLLAMA_BASE_URL=/ollama --env=OPENAI_API_BASE_URL= --env=OPENAI_API_KEY= --env=WEBUI_SECRET_KEY= --env=SCARF_NO_ANALYTICS=true --env=DO_NOT_TRACK=true --env=ANONYMIZED_TELEMETRY=false --env=WHISPER_MODEL=base --env=WHISPER_MODEL_DIR=/app/backend/data/cache/whisper/models --env=RAG_EMBEDDING_MODEL=sentence-transformers/all-MiniLM-L6-v2 --env=RAG_RERANKING_MODEL= --env=SENTENCE_TRANSFORMERS_HOME=/app/backend/data/cache/embedding/models --env=HF_HOME=/app/backend/data/cache/embedding/models --env=HOME=/root --env=WEBUI_BUILD_VERSION=13b0e7d64a708f69c5ce58cf0897d9951d0d16ad --volume=open-webui:/app/backend/data --network=bridge --workdir=/app/backend -p 3000:8080 --restart=always --label='org.opencontainers.image.created=2024-08-14T19:45:36.157Z' --label='org.opencontainers.image.description=User-friendly WebUI for LLMs (Formerly Ollama WebUI)' --label='org.opencontainers.image.licenses=MIT' --label='org.opencontainers.image.revision=13b0e7d64a708f69c5ce58cf0897d9951d0d16ad' --label='org.opencontainers.image.source=https://github.com/open-webui/open-webui' --label='org.opencontainers.image.title=open-webui' --label='org.opencontainers.image.url=https://github.com/open-webui/open-webui' --label='org.opencontainers.image.version=main-cuda' --add-host host.docker.internal:host-gateway --runtime=runc -d ghcr.io/open-webui/open-webui:cuda
+
+
+
+docker run -d -p 3001:8080 --gpus all --add-host=host.docker.internal:host-gateway -v open-webui:/app/backend/data --name open-webuiflux --env=COMFYUI_BASE_URL="http://host.docker.internal:7861" --env=OMFYUI_CFG_SCALE="3.5" --env=COMFYUI_SAMPLER="euler" --env=COMFYUI_SCHEDULER="simple" --env=OMFYUI_SD3="false" --env=COMFYUI_FLUX="true" --env=COMFYUI_FLUX_WEIGHT_DTYPE="fp8_e4m3fn" --env=OMFYUI_FLUX_FP8_CLIP="true" --restart always ghcr.io/open-webui/open-webui:cuda
