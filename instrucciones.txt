@@ -45,3 +45,6 @@ docker run --hostname=87a36caf59e7 --user=0:0 --mac-address=02:42:ac:11:00:02
 docker run -d -p 3001:8080 --gpus all --add-host=host.docker.internal:host-gateway -v open-webui:/app/backend/data --name open-webuiflux --env=COMFYUI_BASE_URL="http://host.docker.internal:7861" --env=OMFYUI_CFG_SCALE="3.5" --env=COMFYUI_SAMPLER="euler" --env=COMFYUI_SCHEDULER="simple" --env=OMFYUI_SD3="false" --env=COMFYUI_FLUX="true" --env=COMFYUI_FLUX_WEIGHT_DTYPE="fp8_e4m3fn" --env=OMFYUI_FLUX_FP8_CLIP="true" --restart always ghcr.io/open-webui/open-webui:cuda
 
 https://www.reddit.com/r/StableDiffusion/comments/1ehv1mh/running_flow1_dev_on_12gb_vram_observation_on/?rdt=44896
+
+
+https://github.com/comfyanonymous/ComfyUI_examples/tree/master/flux
