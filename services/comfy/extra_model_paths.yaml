@@ -1,7 +1,9 @@
 a111:
   base_path: /data
 
-  checkpoints: models/Stable-diffusion
+  #checkpoints: models/Stable-diffusion
+  checkpoints: models/checkpoints
+  unet: models/unet
   configs: models/Stable-diffusion
   vae: models/VAE
   loras: models/Lora
@@ -13,7 +15,8 @@ a111:
   hypernetworks: models/hypernetworks
   controlnet: models/ControlNet
   gligen: models/GLIGEN
-  clip: models/CLIPEncoder
+  #clip: models/CLIPEncoder
+  clip: models/clip
   embeddings: embeddings
 
   custom_nodes: config/comfy/custom_nodes
