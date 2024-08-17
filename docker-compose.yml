@@ -43,9 +43,12 @@ services:
     <<: *base_service
     profiles: ["comfy"]
     build: ./services/comfy/
+    restart: always
     image: sd-comfy:7
     environment:
       - CLI_ARGS=
+    ports:
+      - "7861:7860"
 
 
   comfy-cpu:
